@@ -20,6 +20,9 @@ merge_package https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-c
 merge_package https://github.com/coolsnowwolf/packages/trunk/kernel/ksmbd
 merge_package https://github.com/coolsnowwolf/packages/trunk/net/ksmbd-tools
 
+rm -rf feeds/helloworld/luci-app-ssr-plus
+rm -rf package/feeds/helloworld/luci-app-ssr-plus
+
 if [ $DEVICE = 'r2s' ]; then
 mkdir -p files/usr/bin files/etc/init.d files/etc/rc.d
 wget https://github.com/friendlyarm/friendlywrt/raw/master-v19.07.1/target/linux/rockchip-rk3328/base-files/usr/bin/start-rk3328-pwm-fan.sh -qNP files/usr/bin
