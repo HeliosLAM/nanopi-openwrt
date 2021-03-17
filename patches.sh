@@ -15,6 +15,9 @@ find . -type f -name nft-qos.config | xargs sed -i "s/option limit_enable '1'/op
 sed -i "/\/etc\/coremark\.sh/d" package/feeds/packages/coremark/Makefile
 sed -i 's/192.168.1.1/192.168.2.1/' package/base-files/files/bin/config_generate
 
+sed -i 's,"eth1" "eth0","eth0" "eth1",g' target/linux/rockchip-rk3328/base-files/etc/board.d/02_network
+sed -i "s,'eth1' 'eth0','eth0' 'eth1',g" target/linux/rockchip-rk3328/base-files/etc/board.d/02_network
+
 rm -rf files && mkdir files
 mkdir -p files/etc/dropbear
 mv $GITHUB_WORKSPACE/host_keys/* files/etc/dropbear/
