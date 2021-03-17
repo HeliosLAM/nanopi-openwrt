@@ -20,8 +20,10 @@ merge_package https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-c
 merge_package https://github.com/coolsnowwolf/packages/trunk/kernel/ksmbd
 merge_package https://github.com/coolsnowwolf/packages/trunk/net/ksmbd-tools
 
-#rm -rf feeds/helloworld/luci-app-ssr-plus
-#rm -rf package/feeds/helloworld/luci-app-ssr-plus
+rm -rf package/lean/adbyby/
+rm -rf package/lean/luci-app-adbyby-plus/
+rm -rf feeds/helloworld/luci-app-ssr-plus
+rm -rf package/feeds/helloworld/luci-app-ssr-plus
 
 if [ $DEVICE = 'r2s' ]; then
 sed -i 's,"eth1" "eth0","eth0" "eth1",g' target/linux/rockchip/armv8/base-files/etc/board.d/02_network
