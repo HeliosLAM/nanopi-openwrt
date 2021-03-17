@@ -24,6 +24,8 @@ merge_package https://github.com/coolsnowwolf/packages/trunk/net/ksmbd-tools
 #rm -rf package/feeds/helloworld/luci-app-ssr-plus
 
 if [ $DEVICE = 'r2s' ]; then
+sed -i 's,"eth1" "eth0","eth0" "eth1",g' target/linux/rockchip/armv8/base-files/etc/board.d/02_network
+sed -i "s,'eth1' 'eth0','eth0' 'eth1',g" target/linux/rockchip/armv8/base-files/etc/board.d/02_network
 mkdir -p files/usr/bin files/etc/init.d files/etc/rc.d
 wget https://github.com/friendlyarm/friendlywrt/raw/master-v19.07.1/target/linux/rockchip-rk3328/base-files/usr/bin/start-rk3328-pwm-fan.sh -qNP files/usr/bin
 chmod +x files/usr/bin/start-rk3328-pwm-fan.sh
