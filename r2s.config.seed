@@ -92,4 +92,3 @@ CONFIG_DRIVER_11W_SUPPORT=y
 #CONFIG_PACKAGE_luci-app-oled=y
 
 CONFIG_PACKAGE_luci-app-smartdns=y
-CONFIG_PACKAGE_luci-app-r2sflasher=y
