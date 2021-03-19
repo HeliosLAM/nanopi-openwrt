@@ -25,7 +25,6 @@ rm -rf package/lean/luci-app-adbyby-plus/
 rm -rf package/lean/luci-app-ssr-plus/
 
 if [ $DEVICE = 'r2s' ]; then
-svn co https://github.com/songchenwen/nanopi-r2s/trunk/luci-app-r2sflasher package/lean/luci-app-r2sflasher
 sed -i 's,"eth1" "eth0","eth0" "eth1",g' target/linux/rockchip/armv8/base-files/etc/board.d/02_network
 sed -i "s,'eth1' 'eth0','eth0' 'eth1',g" target/linux/rockchip/armv8/base-files/etc/board.d/02_network
 mkdir -p files/usr/bin files/etc/init.d files/etc/rc.d
