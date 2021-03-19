@@ -1,5 +1,7 @@
 # Nanopi R1S R2S R4S Openwrt 固件
 
+fork自https://github.com/klever1988/nanopi-openwrt/releases 自用 去掉不要的插件 端口对调
+
 [刷机工具](https://www.balena.io/etcher/)  
 [下载地址](#下载地址)  
 [更新说明](#更新说明)  
@@ -18,7 +20,7 @@ https://github.com/klever1988/nanopi-openwrt/releases
 
 ### 终端内在线升级方法：
 ```bash
-wget -qO- https://github.com/klever1988/nanopi-openwrt/raw/master/scripts/autoupdate.sh | sh
+wget -qO- https://github.com/HeliosLAM/nanopi-openwrt/raw/main/scripts/autoupdate.sh | sh
 ```
 (脚本由gary lau提供，非常感谢！)
 
