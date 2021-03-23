@@ -20,6 +20,8 @@ merge_package https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-c
 merge_package https://github.com/coolsnowwolf/packages/trunk/kernel/ksmbd
 merge_package https://github.com/coolsnowwolf/packages/trunk/net/ksmbd-tools
 
+rm -rf package/lean/luci-app-vsftpd/
+rm -rf package/lean/vsftpd-alt/
 rm -rf package/lean/adbyby/
 rm -rf package/lean/luci-app-adbyby-plus/
 rm -rf package/lean/luci-app-ssr-plus/
