@@ -77,7 +77,7 @@ jobs:
           sed -i 's/include ..\/..\//include $(TOPDIR)\/feeds\/luci\//' ../lede/package/base/luci-*/Makefile
           popd
           #sed -i 's/..\/..\//$(TOPDIR)\/feeds\/packages\//' package/feeds/packages/baidupcs-web/Makefile
-          sed -i 's/..\/..\//$(TOPDIR)\/feeds\/packages\//' package/feeds/packages/filebrowser/Makefile
+          #sed -i 's/..\/..\//$(TOPDIR)\/feeds\/packages\//' package/feeds/packages/filebrowser/Makefile
 
       - name: Custom configure file
         run: |
