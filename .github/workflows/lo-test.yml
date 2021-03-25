@@ -18,7 +18,7 @@ jobs:
       DEVICE: ${{ github.event.client_payload.device || github.event.inputs.device }}
       TG: ${{ secrets.TELEGRAM_BOT_TOKEN }}
       DEPLOY_SSHKEY: ${{ secrets.SSH_KEY }}
-    if: github.repository_owner=='HeliosLAM'
+    if: github.repository_owner=='Helios'
 
     steps:
 
@@ -76,8 +76,6 @@ jobs:
           ls -d */ | xargs -n1 -i diff -q {} ../lede/feeds/luci/{} | grep Only | grep lede | grep -E applications\|themes | awk '{print $3 $4}' | tr -d ':' | xargs -n1 -i mv {} ../lede/package/base/
           sed -i 's/include ..\/..\//include $(TOPDIR)\/feeds\/luci\//' ../lede/package/base/luci-*/Makefile
           popd
-          #sed -i 's/..\/..\//$(TOPDIR)\/feeds\/packages\//' package/feeds/packages/baidupcs-web/Makefile
-          #sed -i 's/..\/..\//$(TOPDIR)\/feeds\/packages\//' package/feeds/packages/filebrowser/Makefile
 
       - name: Custom configure file
         run: |
@@ -241,6 +239,14 @@ jobs:
           sudo losetup -P --direct-io $LOOP_DEVICE lede.img
           mkdir lede && sudo mount -o nossd,compress=zstd $LOOP_DEVICE lede
           cd lede
+           if [ -d 'feeds' ]; then
+            pushd feeds/packages; git restore .; popd
+            pushd feeds/luci; git restore .; popd
+          fi
+          ./scripts/feeds update -a
+          ./scripts/feeds install -a
+          . $GITHUB_WORKSPACE/patches.sh
+          . $GITHUB_WORKSPACE/merge_packages.sh
           cat $GITHUB_WORKSPACE/$DEVICE.config.seed > .config
           echo -e '# CONFIG_SIGNED_PACKAGES is not set\n' >> .config
           make defconfig && make -j$(($(nproc) + 1))
