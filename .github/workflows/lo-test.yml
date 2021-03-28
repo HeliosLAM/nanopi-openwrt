@@ -220,7 +220,7 @@ jobs:
           sudo losetup -P --direct-io $LOOP_DEVICE lede.img
           mkdir lede && sudo mount -o nossd,compress=zstd $LOOP_DEVICE lede
           
-          cd ~/lede
+          cd lede
           if [ -d 'feeds' ]; then
             pushd feeds/packages; git restore .; popd
             pushd feeds/luci; git restore .; popd
