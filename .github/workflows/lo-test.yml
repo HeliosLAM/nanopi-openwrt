@@ -222,6 +222,15 @@ jobs:
           sudo losetup -P --direct-io $LOOP_DEVICE lede.img
           mkdir lede && sudo mount -o nossd,compress=zstd $LOOP_DEVICE lede
           
+          if [ -d 'lede/.git' ]; then
+          cd lede && git config --local user.email "action@github.com" && git config --local user.name "GitHub Action"
+          git fetch && git reset --hard origin/openwrt-18.06-k5.4
+          #git remote set-branches --add origin openwrt-18.06
+          #git merge -X theirs --no-edit origin/openwrt-18.06
+          else
+          sudo chown $USER:$(id -gn) lede && git clone -b openwrt-18.06-k5.4 --single-branch https://github.com/immortalwrt/immortalwrt lede
+          fi
+          
           cd ~/lede
           if [ -d 'feeds' ]; then
             pushd feeds/packages; git restore .; popd
