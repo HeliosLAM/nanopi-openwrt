@@ -19,15 +19,3 @@ merge_package https://github.com/project-lede/luci-app-godproxy
 merge_package https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-cifsd luci-app-ksmbd
 merge_package https://github.com/coolsnowwolf/packages/trunk/kernel/ksmbd
 merge_package https://github.com/coolsnowwolf/packages/trunk/net/ksmbd-tools
-
-#rm -rf package/lean/luci-app-vsftpd/
-#rm -rf package/lean/vsftpd-alt/
-#rm -rf package/lean/adbyby/
-#rm -rf package/lean/luci-app-adbyby-plus/
-#rm -rf package/lean/luci-app-ssr-plus/
-
-if [ $DEVICE = 'r2s' ]; then
-    sed -i 's,"eth1" "eth0","eth0" "eth1",g' target/linux/rockchip/armv8/base-files/etc/board.d/02_network
-    sed -i "s,'eth1' 'eth0','eth0' 'eth1',g" target/linux/rockchip/armv8/base-files/etc/board.d/02_network
-    sed -i "s/enable '0'/enable '1'/" `find feeds/ -type f -name oled | grep config`
-fi
