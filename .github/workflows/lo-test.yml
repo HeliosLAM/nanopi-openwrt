@@ -18,7 +18,7 @@ jobs:
       DEVICE: ${{ github.event.client_payload.device || github.event.inputs.device }}
       TG: ${{ secrets.TELEGRAM_BOT_TOKEN }}
       DEPLOY_SSHKEY: ${{ secrets.SSH_KEY }}
-    if: github.repository_owner=='HeliosLAM'
+    if: github.repository_owner=='klever1988'
 
     steps:
 
@@ -220,10 +220,10 @@ jobs:
         run: |
           sudo sysctl vm.swappiness=0
           curl -L https://github.com/klever1988/sshactions/releases/download/cache/ib-$DEVICE.tar.xz | tar -Jxvf -
-          #mv *imagebuilder* ib && cd ib
-          find $PWD -type f -name '*imagebuilder*' -exec mv {} ib \;
-          cd ib
+          mv *imagebuilder* ib && cd ib
           . $GITHUB_WORKSPACE/merge_files.sh
+          . $GITHUB_WORKSPACE/merge_packages.sh
+          . $GITHUB_WORKSPACE/patches.sh
           sed -i '/local/d;s/#//' files/etc/opkg/distfeeds.conf
           sed -i 's/luci-app-[^ ]*//g' include/target.mk $(find target/ -name Makefile)
           sed -i 's/$(OPKG) install $(BUILD_PACKAGES)/$(OPKG) install --force-overwrite $(BUILD_PACKAGES)/' Makefile
